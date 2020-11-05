@@ -5,7 +5,8 @@ const Body=Matter.Body;
 
 var engine,world;
 
-var object, ground;
+var box1, box2;
+var ground;
 
 function setup() {
   createCanvas(1200,800);
@@ -13,33 +14,18 @@ function setup() {
 
   world=engine.world;
 
-  var options_ground={
-    isStatic:true,
-    friction:0.2
-  }
+  box1=new Box(600,200,100,100);
+  ground=new Ground(600,780,1200,10);
+  box2=new Box(680,100,80,100);
 
-  var options_box={
-    density: 0.01,
-    restitution: 1,
-    friction:0.05
-  }
-
-  object=Bodies.rectangle(600,200,40,40,options_box);
-  World.add(world, object);
-  console.log(object);
-
-  ground=Bodies.rectangle(600,790,1200,10,options_ground);
-  World.add(world,ground);
 }
 
 function draw() {
   background(255,255,255); 
   Engine.update(engine); 
-  rectMode(CENTER);
-  fill("green");
-  rect(object.position.x,object.position.y,40,40);
+  box1.display();
+  ground.display();
+  box2.display();
 
-  fill("brown");
-  rect(ground.position.x,ground.position.y,1200,10);
-  drawSprites();
-}
+  
+} 
